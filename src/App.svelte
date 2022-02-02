@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Router, Route } from 'svelte-navigator';
     import Connect from './routes/connect/Connect.svelte';
-    import Home from './routes/Home.svelte';
+    import Home from './routes/home/Home.svelte';
     import Sign from './routes/sign/Sign.svelte';
     import TailwindCSS from './TailwindCSS.svelte';
 </script>
