@@ -94,12 +94,6 @@ to-blue-400"
     </div>
 </div>
 
-<!-- <button
-    id="id"
-    on:click="{() => {
-        getPublicKey();
-    }}">SEND</button
-> -->
 <style>
     .connect-private-key-success {
         color: #def7ec;
