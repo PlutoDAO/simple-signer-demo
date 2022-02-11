@@ -7,13 +7,15 @@
 </script>
 
 {#if open}
-    <div class="modal z-50 fixed w-full h-full top-0 left-0 flex items-center justify-center p-8 lg:p-0">
+    <div
+        class="simple-signer-demo sign-transaction-modal-container modal z-50 fixed w-full h-full top-0 left-0 flex items-center justify-center p-8 lg:p-0"
+    >
         <div class="modal-overlay fixed w-full h-full bg-gray-900 opacity-50"></div>
-        <div class="bg-white max-w-xs h-48 mx-auto rounded-lg shadow-xl z-50 overflow-y-auto">
-            <div class="head bg-gray-100 py-5 px-8 text-2xl font-bold flex justify-between">
+        <div class="bg-white max-w-sm h-108 mx-auto rounded-lg shadow-xl z-50 overflow-y-auto">
+            <div class="head bg-gray-100 py-3 px-8 text-2xl font-bold flex justify-between">
                 {title}
                 <button
-                    class="simple-signer close-button p-2 bg-gray-200 hover:bg-gray-300 rounded-full ml-4"
+                    class="simple-signer-demo close-button p-2 bg-gray-200 hover:bg-gray-300 rounded-full ml-4"
                     on:click="{() => dispatch('close')}"
                 >
                     <svg
@@ -28,7 +30,7 @@
                     >
                 </button>
             </div>
-            <div class="content p-8">
+            <div class="simple-signer-demo body content p-8">
                 <slot name="body" />
             </div>
         </div>

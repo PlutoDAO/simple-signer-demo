@@ -35,6 +35,9 @@
         ],
         "setupFilesAfterEnv": [
             "@testing-library/jest-dom/extend-expect"
+        ],
+        "setupFiles": [
+            "dotenv/config"
         ]
     },
     "devDependencies": {
@@ -49,6 +52,7 @@
         "@typescript-eslint/parser": "^5.9.1",
         "autoprefixer": "^10.4.2",
         "cypress": "^9.3.1",
+        "dotenv": "^16.0.0",
         "eslint": "^8.6.0",
         "eslint-config-airbnb-base": "^15.0.0",
         "eslint-config-prettier": "^8.3.0",
@@ -66,6 +70,7 @@
         "rollup-plugin-node-polyfills": "^0.2.1",
         "svelte": "^3.44.0",
         "svelte-check": "^2.2.7",
+        "svelte-clipboard": "^1.0.0",
         "svelte-jester": "^2.1.5",
         "svelte-navigator": "^3.1.5",
         "svelte-preprocess": "^4.9.8",
