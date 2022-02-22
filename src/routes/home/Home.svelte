@@ -16,7 +16,7 @@
         hideToastNotificaction = !hideToastNotificaction;
     }
 
-    function handleMessage(e: any) {
+    function handleMessage(e: MessageEvent) {
         const xdrRegEx = new RegExp(/^AAAAAgAAAAA[a-zA-Z0-9!@#\$%\^\&*\)\/\(+=._-]+/gm);
         const publicKeyRegEx = /^G[A-Za-z0-9]{55}$/;
         const messageEvent = e.data;
@@ -34,7 +34,7 @@
 
     async function sendTx() {
         const xdrUnsigned = await buildTransaction($publicKey);
-        return openSignWindow(xdrUnsigned);
+        return openSignWindow(xdrUnsigned, 'This is a payment');
     }
 </script>
 

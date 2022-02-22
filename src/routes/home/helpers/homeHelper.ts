@@ -6,11 +6,18 @@ export function openConnectWindow() {
     );
     return connectWindow;
 }
-export async function openSignWindow(xdr: string) {
+export async function openSignWindow(xdr: string, description?: string) {
     const signWindow = window.open(
-        `${process.env['VITE_HOST_SIMPLE_SIGNER']}/sign?xdr=${xdr}`,
+        `${process.env['VITE_HOST_SIMPLE_SIGNER']}/sign`,
         'Sign_Window',
         'width=450, height=350',
     );
+
+    if (signWindow) {
+        setTimeout(() => {
+            signWindow.postMessage({ xdr, description }, 'https://localhost:3001');
+        }, 500);
+    }
+
     return signWindow;
 }
