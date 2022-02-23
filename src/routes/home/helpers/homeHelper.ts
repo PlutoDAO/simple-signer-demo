@@ -13,11 +13,13 @@ export async function openSignWindow(xdr: string, description?: string) {
         'width=450, height=350',
     );
 
-    if (signWindow) {
-        setTimeout(() => {
+    window.addEventListener('message', (e) => {
+        if (e.origin !== `${process.env['VITE_HOST_SIMPLE_SIGNER']}`) {
+            return;
+        } else if (signWindow && e.data === 'Simple Signer is ready to use') {
             signWindow.postMessage({ xdr, description }, 'https://localhost:3001');
-        }, 500);
-    }
+        }
+    });
 
     return signWindow;
 }
