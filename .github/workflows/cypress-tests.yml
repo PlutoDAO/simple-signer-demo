@@ -17,7 +17,7 @@ jobs:
           start: npm run dev
           env: true
         env:
-          HOST: 'http://localhost:3000/'
+          CYPRESS_HOST: 'http://localhost:3000/'
   build-and-deploy:
     needs: cypress-run
     runs-on: ubuntu-latest
