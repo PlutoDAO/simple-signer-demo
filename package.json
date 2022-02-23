@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "dev": "vite --https --mode env",
+        "dev": "vite --https --mode env --host",
         "dev:open": "vite --open --https --mode env",
         "build": "vite build",
         "preview": "vite preview",
