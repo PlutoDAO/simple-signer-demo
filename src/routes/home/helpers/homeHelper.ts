@@ -16,7 +16,7 @@ export async function openSignWindow(xdr: string, description?: string) {
     window.addEventListener('message', (e) => {
         if (e.origin !== `${process.env['VITE_HOST_SIMPLE_SIGNER']}`) {
             return;
-        } else if (signWindow && e.data === 'Simple Signer is ready to use') {
+        } else if (signWindow && e.data.ready) {
             signWindow.postMessage({ xdr, description }, 'https://localhost:3001');
         }
     });
