@@ -17,7 +17,7 @@ export async function openSignWindow(xdr: string, description?: string) {
         if (e.origin !== `${process.env['VITE_HOST_SIMPLE_SIGNER']}`) {
             return;
         } else if (signWindow && e.data.ready) {
-            signWindow.postMessage({ xdr, description }, 'https://localhost:3001');
+            signWindow.postMessage({ xdr, description }, `${process.env['VITE_HOST_SIMPLE_SIGNER']}`);
         }
     });
 
