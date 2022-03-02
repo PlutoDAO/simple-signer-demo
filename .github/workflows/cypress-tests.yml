@@ -13,11 +13,13 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          headless: true
           build: npm run build
           start: npm run dev
           env: true
         env:
-          CYPRESS_HOST: 'http://localhost:3000/'
+          CYPRESS_host: localhost
+          CYPRESS_port: 3000
   build-and-deploy:
     needs: cypress-run
     runs-on: ubuntu-latest
