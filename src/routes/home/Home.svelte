@@ -34,7 +34,7 @@
         }
 
         if (messageEvent.type === 'signed') {
-            const signedXdr = messageEvent.message.signedXdr;
+            const signedXdr = messageEvent.message.signedXDR;
             if (xdrRegEx.test(signedXdr)) {
                 $xdr = signedXdr;
                 console.log(messageEvent.message);
