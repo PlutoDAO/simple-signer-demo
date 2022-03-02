@@ -17,7 +17,7 @@
     }
 
     function handleMessage(e: MessageEvent) {
-        if (e.origin !== process.env['VITE_HOST_SIMPLE_SIGNER']) {
+        if (e.origin !== process.env.VITE_HOST_SIMPLE_SIGNER) {
             return;
         }
 

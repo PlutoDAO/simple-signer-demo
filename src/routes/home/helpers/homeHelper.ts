@@ -1,4 +1,4 @@
-const simpleSignerHost = process.env['VITE_HOST_SIMPLE_SIGNER'];
+const simpleSignerHost = process.env.VITE_HOST_SIMPLE_SIGNER;
 
 export function openConnectWindow() {
     const connectWindow = window.open(`${simpleSignerHost}/connect`, 'Connect_Window', 'width=280, height=350');
