@@ -11,7 +11,7 @@ it('should test connect window open', () => {
     openConnectWindow();
     expect(window.open).toHaveBeenCalled();
     expect(window.open).toHaveBeenCalledWith(
-        `${process.env['VITE_HOST_SIMPLE_SIGNER']}/connect`,
+        `${process.env.VITE_HOST_SIMPLE_SIGNER}/connect`,
         'Connect_Window',
         'width=280, height=350',
     );
@@ -27,7 +27,7 @@ it('should test sign window open', async () => {
     await openSignWindow(xdr);
     expect(window.open).toHaveBeenCalled();
     expect(window.open).toHaveBeenCalledWith(
-        `${process.env['VITE_HOST_SIMPLE_SIGNER']}/sign`,
+        `${process.env.VITE_HOST_SIMPLE_SIGNER}/sign`,
         'Sign_Window',
         'width=450, height=350',
     );
