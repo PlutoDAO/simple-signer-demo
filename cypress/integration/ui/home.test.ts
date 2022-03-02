@@ -3,12 +3,6 @@
 describe('home', () => {
     const url = Cypress.env('HOST');
 
-    it('should click connect button and redirect to /connnect', () => {
-        cy.visit(url);
-        cy.get('.connect-btn').click();
-        cy.url().should('include', '/connect');
-    });
-
     it('should click sign transaction button, show popup and open window /connect', () => {
         cy.visit(url);
         cy.get('.sign-btn').click();
