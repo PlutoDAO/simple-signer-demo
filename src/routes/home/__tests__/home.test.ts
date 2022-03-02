@@ -27,7 +27,7 @@ it('should test sign window open', async () => {
     await openSignWindow(xdr);
     expect(window.open).toHaveBeenCalled();
     expect(window.open).toHaveBeenCalledWith(
-        `${process.env['VITE_HOST_SIMPLE_SIGNER']}/sign?xdr=${xdr}`,
+        `${process.env['VITE_HOST_SIMPLE_SIGNER']}/sign`,
         'Sign_Window',
         'width=450, height=350',
     );
