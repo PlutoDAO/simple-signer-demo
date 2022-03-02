@@ -10,7 +10,7 @@ export async function openSignWindow(xdr: string, description?: string) {
     window.addEventListener('message', (e) => {
         if (e.origin !== `${simpleSignerHost}`) {
             return;
-        } else if (signWindow && e.data.type === 'ready') {
+        } else if (signWindow && e.data.type === 'onReady') {
             signWindow.postMessage({ xdr, description }, `${simpleSignerHost}`);
         }
     });

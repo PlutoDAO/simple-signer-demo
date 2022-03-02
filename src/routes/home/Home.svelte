@@ -25,7 +25,7 @@
         const publicKeyRegEx = /^G[A-Za-z0-9]{55}$/;
         const messageEvent = e.data;
 
-        if (messageEvent.type === 'connected') {
+        if (messageEvent.type === 'onConnect') {
             const publicKeyEvent = messageEvent.message.publicKey;
             if (publicKeyRegEx.test(publicKeyEvent)) {
                 $publicKey = publicKeyEvent;
@@ -33,7 +33,7 @@
             }
         }
 
-        if (messageEvent.type === 'signed') {
+        if (messageEvent.type === 'onSign') {
             const signedXdr = messageEvent.message.signedXDR;
             if (xdrRegEx.test(signedXdr)) {
                 $xdr = signedXdr;
