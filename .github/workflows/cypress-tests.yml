@@ -1,37 +1,37 @@
 name: Cypress Tests
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          headless: true
-          build: npm run build
-          start: npm run dev
-          env: true
-        env:
-          CYPRESS_host: localhost
-          CYPRESS_port: 3000
-  build-and-deploy:
-    needs: cypress-run
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.1
-      - name: Install and Build
-        run: |
-          npm install
-          npm run build
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.7
-        with:
-          branch: gh-pages
-          folder: dist
+    cypress-run:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+            - name: Cypress run
+              uses: cypress-io/github-action@v2
+              with:
+                  headless: true
+                  build: npm run build
+                  start: npm run dev
+                  env: true
+              env:
+                  CYPRESS_host: localhost
+                  CYPRESS_port: 3001
+    build-and-deploy:
+        needs: cypress-run
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2.3.1
+            - name: Install and Build
+              run: |
+                  npm install
+                  npm run build
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@4.1.7
+              with:
+                  branch: gh-pages
+                  folder: dist
