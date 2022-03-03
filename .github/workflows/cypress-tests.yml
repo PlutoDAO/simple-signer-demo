@@ -19,7 +19,7 @@ jobs:
           env: true
         env:
           CYPRESS_host: localhost
-          CYPRESS_port: 3000
+          CYPRESS_port: 3001
   build-and-deploy:
     needs: cypress-run
     runs-on: ubuntu-latest
