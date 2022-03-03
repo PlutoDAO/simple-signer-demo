@@ -3,6 +3,10 @@
 describe('home', () => {
     // const url = Cypress.env('HOST');
 
+    it('should pass', () => {
+        console.log('github actions');
+    });
+
     it('should click sign transaction button, show popup and open window /connect', () => {
         cy.visit('https://localhost:3002/');
         cy.get('.sign-btn').click();
