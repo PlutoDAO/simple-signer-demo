@@ -16,25 +16,36 @@
         hideToastNotificaction = !hideToastNotificaction;
     }
 
-    function handleMessage(e: any) {
-        const xdrRegEx = new RegExp(/^AAAAAgAAAAA[a-zA-Z0-9!@#\$%\^\&*\)\/\(+=._-]+/gm);
+    function handleMessage(e: MessageEvent) {
+        if (e.origin !== process.env.VITE_HOST_SIMPLE_SIGNER) {
+            return;
+        }
+
+        const xdrRegEx = new RegExp(/^AAAAAgAAAAA[a-zA-Z0-9!@#%*+=._-]+/gm);
         const publicKeyRegEx = /^G[A-Za-z0-9]{55}$/;
         const messageEvent = e.data;
 
-        if (publicKeyRegEx.test(messageEvent)) {
-            $publicKey = messageEvent;
-            console.log($publicKey);
+        if (messageEvent.type === 'onConnect') {
+            const publicKeyEvent = messageEvent.message.publicKey;
+            if (publicKeyRegEx.test(publicKeyEvent)) {
+                $publicKey = publicKeyEvent;
+                console.log(messageEvent.message);
+            }
         }
-        if (xdrRegEx.test(messageEvent)) {
-            $xdr = messageEvent;
-            console.log($xdr);
+
+        if (messageEvent.type === 'onSign') {
+            const signedXdr = messageEvent.message.signedXDR;
+            if (xdrRegEx.test(signedXdr)) {
+                $xdr = signedXdr;
+                console.log(messageEvent.message);
+            }
         }
     }
     window.addEventListener('message', handleMessage);
 
     async function sendTx() {
         const xdrUnsigned = await buildTransaction($publicKey);
-        return openSignWindow(xdrUnsigned);
+        return openSignWindow(xdrUnsigned, 'This is a payment');
     }
 </script>
 
