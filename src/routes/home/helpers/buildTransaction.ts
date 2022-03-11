@@ -1,7 +1,7 @@
 import StellarSdk from 'stellar-sdk';
 import TransactionBuilderError from '../errors/TransactionBuilderError';
 
-const server = new StellarSdk.Server(process.env['VITE_HORIZON_URL']);
+const server = new StellarSdk.Server('https://horizon-testnet.stellar.org');
 
 export async function buildTransaction(publicKey: string): Promise<string> {
     try {
