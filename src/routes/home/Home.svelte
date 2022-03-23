@@ -3,7 +3,7 @@
     import ToastNotification from '../../lib/ToastNotification.svelte';
     import { openConnectWindow, openSignWindow } from './helpers/homeHelper';
     import { xdr, publicKey } from '../home/store/store';
-    // import { buildTransaction } from '../home/helpers/buildTransaction';
+    import { buildTransaction } from '../home/helpers/buildTransaction';
 
     let showSignModal = false;
     let hideToastNotificaction = true;
@@ -44,24 +44,12 @@
     window.addEventListener('message', handleMessage);
 
     async function sendTx() {
-        // const xdrUnsigned = await buildTransaction($publicKey);
-        const multipleOp =
-            'AAAAAgAAAABUcoiBexpY2VsO6LYJHv3v0dtc/JpGmwOm9HPM8B2LZQAAArwAFrV3AAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAQAAAABUcoiBexpY2VsO6LYJHv3v0dtc/JpGmwOm9HPM8B2LZQAAAAAAAAAAO5rKAAAAAAAAAAABAAAAAFRyiIF7GljZWw7otgke/e/R21z8mkabA6b0c8zwHYtlAAAAAAAAAAA7msoAAAAAAAAAAAEAAAAAVHKIgXsaWNlbDui2CR7979HbXPyaRpsDpvRzzPAdi2UAAAAAAAAAADuaygAAAAAAAAAAAQAAAABUcoiBexpY2VsO6LYJHv3v0dtc/JpGmwOm9HPM8B2LZQAAAAAAAAAAO5rKAAAAAAAAAAABAAAAAFRyiIF7GljZWw7otgke/e/R21z8mkabA6b0c8zwHYtlAAAAAAAAAAA7msoAAAAAAAAAAAEAAAAAVHKIgXsaWNlbDui2CR7979HbXPyaRpsDpvRzzPAdi2UAAAAAAAAAADuaygAAAAAAAAAAAQAAAABUcoiBexpY2VsO6LYJHv3v0dtc/JpGmwOm9HPM8B2LZQAAAAAAAAAAO5rKAAAAAAAAAAAA';
-        return openSignWindow(multipleOp, 'This is a payment', [
+        const xdrUnsigned = await buildTransaction($publicKey);
+        return openSignWindow(xdrUnsigned, 'This is a payment', [
             {
                 from: 0,
-                to: 1,
-                description: 'Incrementing the DEBT token (non-transferable)',
-            },
-            {
-                from: 2,
-                to: 3,
-                description: 'Incrementing the DEBT token (non-transferable)',
-            },
-            {
-                from: 4,
-                to: 5,
-                description: 'Incrementing the DEBT token (non-transferable)',
+                to: 0,
+                description: 'This is a payment operation',
             },
         ]);
     }
