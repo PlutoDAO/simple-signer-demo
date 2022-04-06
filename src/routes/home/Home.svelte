@@ -21,7 +21,7 @@
             return;
         }
 
-        const xdrRegEx = new RegExp(/^AAAAAgAAAAA[a-zA-Z0-9!@#%*+=._-]+/gm);
+        const xdrRegEx = new RegExp(/^AAAAAgAAAA[a-zA-Z0-9!@#%*+=._-]+/gm);
         const publicKeyRegEx = /^G[A-Za-z0-9]{55}$/;
         const messageEvent = e.data;
 
@@ -32,7 +32,6 @@
                 console.log(messageEvent.message);
             }
         }
-
         if (messageEvent.type === 'onSign') {
             const signedXdr = messageEvent.message.signedXDR;
             if (xdrRegEx.test(signedXdr)) {

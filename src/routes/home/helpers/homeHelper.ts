@@ -2,8 +2,8 @@ const simpleSignerHost = process.env.VITE_HOST_SIMPLE_SIGNER;
 
 export function openConnectWindow(wallets?: string[]) {
     const connectWindow = window.open(`${simpleSignerHost}/connect`, 'Connect_Window', 'width=280, height=350');
-    let array: string[] = [];
 
+    let array: string[] = [];
     if (wallets) {
         array = wallets;
     }
