@@ -45,13 +45,7 @@
 
     async function sendTx() {
         const xdrUnsigned = await buildTransaction($publicKey);
-        return openSignWindow(xdrUnsigned, 'This is a payment', [
-            {
-                from: 0,
-                to: 0,
-                description: 'This is a payment operation',
-            },
-        ]);
+        return openSignWindow(xdrUnsigned, 'This is a payment');
     }
 </script>
 
