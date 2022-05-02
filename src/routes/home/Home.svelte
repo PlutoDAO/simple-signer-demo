@@ -47,8 +47,9 @@
         return openSignWindow(xdrUnsigned, 'This is a payment', [
             {
                 from: 0,
-                to: 0,
-                description: 'This is a payment operation',
+                to: 5,
+                description: 'You stake 100 yUSDC on PlutoDAO',
+                title: 'Payment and Create Account',
             },
         ]);
     }
