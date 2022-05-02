@@ -13,7 +13,7 @@ it('should test connect window open', () => {
     expect(window.open).toHaveBeenCalledWith(
         `${process.env.VITE_HOST_SIMPLE_SIGNER}/connect`,
         'Connect_Window',
-        'width=360, height=700',
+        'width=360, height=450',
     );
 });
 

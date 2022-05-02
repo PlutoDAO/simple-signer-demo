@@ -1,7 +1,7 @@
 const simpleSignerHost = process.env.VITE_HOST_SIMPLE_SIGNER;
 
 export function openConnectWindow(wallets?: string[]) {
-    const connectWindow = window.open(`${simpleSignerHost}/connect`, 'Connect_Window', 'width=360, height=700');
+    const connectWindow = window.open(`${simpleSignerHost}/connect`, 'Connect_Window', 'width=360, height=450');
 
     let array: string[] = [];
     if (wallets) {
@@ -29,7 +29,7 @@ export async function openSignWindow(
         if (e.origin !== `${simpleSignerHost}`) {
             return;
         } else if (signWindow && e.data.type === 'onReady') {
-            signWindow.postMessage({ xdr, description, operationGroups }, `${simpleSignerHost}`);
+            signWindow.postMessage({ xdr, description, operationGroups }, `${simpleSignerHost}/`);
         }
     });
 
