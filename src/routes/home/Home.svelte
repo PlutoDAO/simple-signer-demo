@@ -1,9 +1,9 @@
 <script lang="ts">
+    import StellarSdk from 'stellar-sdk';
     import Modal from '../../lib/Modal.svelte';
     import ToastNotification from '../../lib/ToastNotification.svelte';
     import { openConnectWindow, openSignWindow } from './helpers/homeHelper';
     import { xdr, publicKey } from '../home/store/store';
-    import { buildTransaction } from '../home/helpers/buildTransaction';
 
     let showSignModal = false;
     let hideToastNotificaction = true;
@@ -21,20 +21,18 @@
             return;
         }
 
-        const xdrRegEx = new RegExp(/^AAAAAgAAAA[a-zA-Z0-9!@#%*+=._-]+/gm);
-        const publicKeyRegEx = /^G[A-Za-z0-9]{55}$/;
         const messageEvent = e.data;
 
         if (messageEvent.type === 'onConnect') {
             const publicKeyEvent = messageEvent.message.publicKey;
-            if (publicKeyRegEx.test(publicKeyEvent)) {
+            if (StellarSdk.Keypair.fromPublicKey(publicKeyEvent)) {
                 $publicKey = publicKeyEvent;
                 console.log(messageEvent.message);
             }
         }
         if (messageEvent.type === 'onSign') {
             const signedXdr = messageEvent.message.signedXDR;
-            if (xdrRegEx.test(signedXdr)) {
+            if (StellarSdk.xdr.TransactionEnvelope.validateXDR(signedXdr, 'base64') === true) {
                 $xdr = signedXdr;
                 console.log(messageEvent.message);
             }
@@ -43,13 +41,14 @@
     window.addEventListener('message', handleMessage);
 
     async function sendTx() {
-        const xdrUnsigned = await buildTransaction($publicKey);
-        return openSignWindow(xdrUnsigned, 'This is a payment', [
+        const xdrUnsigned =
+            'AAAAAgAAAADhqXT1t6e85DlUDyM5OzmJ2KPmujX8gegA027HvKSMpQAAAZAADGyCAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAADhqXT1t6e85DlUDyM5OzmJ2KPmujX8gegA027HvKSMpQAAAAAAAAAAAvrwgAAAAAAAAAABAAAAAOGpdPW3p7zkOVQPIzk7OYnYo+a6NfyB6ADTbse8pIylAAAAAAAAAAAC+vCAAAAAAAAAAAEAAAAA4al09benvOQ5VA8jOTs5idij5ro1/IHoANNux7ykjKUAAAAAAAAAAAL68IAAAAAAAAAAAQAAAADhqXT1t6e85DlUDyM5OzmJ2KPmujX8gegA027HvKSMpQAAAAAAAAAAAvrwgAAAAAAAAAAA';
+        return openSignWindow(xdrUnsigned, 'Example transaction description', [
             {
                 from: 0,
-                to: 5,
-                description: 'You stake 100 yUSDC on PlutoDAO',
-                title: 'Payment and Create Account',
+                to: 3,
+                description: 'Example group description',
+                title: 'Example group title',
             },
         ]);
     }
