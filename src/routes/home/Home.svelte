@@ -4,6 +4,7 @@
     import ToastNotification from '../../lib/ToastNotification.svelte';
     import { openConnectWindow, openSignWindow } from './helpers/homeHelper';
     import { xdr, publicKey } from '../home/store/store';
+    import { buildTransaction } from '../home/helpers/buildTransaction';
 
     let showSignModal = false;
     let hideToastNotificaction = true;
@@ -41,16 +42,8 @@
     window.addEventListener('message', handleMessage);
 
     async function sendTx() {
-        const xdrUnsigned =
-            'AAAAAgAAAADhqXT1t6e85DlUDyM5OzmJ2KPmujX8gegA027HvKSMpQAAAZAADGyCAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAQAAAADhqXT1t6e85DlUDyM5OzmJ2KPmujX8gegA027HvKSMpQAAAAAAAAAAAvrwgAAAAAAAAAABAAAAAOGpdPW3p7zkOVQPIzk7OYnYo+a6NfyB6ADTbse8pIylAAAAAAAAAAAC+vCAAAAAAAAAAAEAAAAA4al09benvOQ5VA8jOTs5idij5ro1/IHoANNux7ykjKUAAAAAAAAAAAL68IAAAAAAAAAAAQAAAADhqXT1t6e85DlUDyM5OzmJ2KPmujX8gegA027HvKSMpQAAAAAAAAAAAvrwgAAAAAAAAAAA';
-        return openSignWindow(xdrUnsigned, 'Example transaction description', [
-            {
-                from: 0,
-                to: 3,
-                description: 'Example group description',
-                title: 'Example group title',
-            },
-        ]);
+        const xdrUnsigned = await buildTransaction($publicKey);
+        return openSignWindow(xdrUnsigned, 'This is a payment');
     }
 </script>
 
